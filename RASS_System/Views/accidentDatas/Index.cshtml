@@ -1,0 +1,89 @@
+﻿@model IEnumerable<RASS_System.Models.accidentData>
+
+@{
+    ViewData["Title"] = "Accident list";
+}
+
+<h1>Accident Table</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-add"></i>Add New Accident details</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.lastUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subBase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.county)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.road)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.severity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.weather)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hospitalID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.policeID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.county)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.road)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.severity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.weather)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hospitalID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.policeID)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-secondary"><i class="fa fa-eye"></i>Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
