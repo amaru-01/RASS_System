@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<RASS_System.Models.accidentData>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Accidnet List";
 }
 
-<h1>Index</h1>
+<h1>Accident List</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i>Add New Accident details</a>
 </p>
 <table class="table">
     <thead>
@@ -42,7 +42,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Police)
             </th>
-            <th></th>
+            <th>Edit</th>
+            <th>View</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -73,16 +75,21 @@
                 @Html.DisplayFor(modelItem => item.weather)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hospital.Id)
+                @Html.DisplayFor(modelItem => item.Hospital.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Police.Id)
+                @Html.DisplayFor(modelItem => item.Police.Name)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</a> |
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-secondary"><i class="fa fa-eye"></i>Details</a> |
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                </td>
         </tr>
 }
     </tbody>

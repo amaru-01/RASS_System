@@ -49,8 +49,8 @@ namespace RASS_System.Controllers
         // GET: accidentDatas/Create
         public IActionResult Create()
         {
-            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id");
-            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id");
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Name");
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace RASS_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,lastUpdated,subBase,county,road,place,severity,description,weather,hospitalID,policeID")] accidentData accidentData)
+        public async Task<IActionResult> Create(accidentData accidentData)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,9 @@ namespace RASS_System.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
-            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
+            //DROP DOWN LIST
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Name", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Name", accidentData.policeID);
             return View(accidentData);
         }
 
@@ -85,8 +86,8 @@ namespace RASS_System.Controllers
             {
                 return NotFound();
             }
-            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
-            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Name", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Name", accidentData.policeID);
             return View(accidentData);
         }
 
@@ -95,7 +96,7 @@ namespace RASS_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,lastUpdated,subBase,county,road,place,severity,description,weather,hospitalID,policeID")] accidentData accidentData)
+        public async Task<IActionResult> Edit(int id, accidentData accidentData)
         {
             if (id != accidentData.ID)
             {
@@ -122,8 +123,8 @@ namespace RASS_System.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
-            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Name", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Name", accidentData.policeID);
             return View(accidentData);
         }
 
