@@ -48,7 +48,8 @@ namespace RASS_System.Controllers
         // GET: DriverDatas/Create
         public IActionResult Create()
         {
-            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "Id");
+            ViewData["AccidentID"] = new SelectList(_context.accidentDatas, "Id", "ID");
+            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "MakeModel");
             return View();
         }
 
@@ -57,7 +58,7 @@ namespace RASS_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Gender,Age,Contact,LicenseNumber,MedicalInfo,AccidentID,VehicleID")] DriverData driverData)
+        public async Task<IActionResult> Create(DriverData driverData)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +66,8 @@ namespace RASS_System.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "Id", driverData.VehicleID);
+            ViewData["AccidentID"] = new SelectList(_context.accidentDatas, "Id", "ID", driverData.AccidentID);
+            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "MakeModel", driverData.VehicleID);
             return View(driverData);
         }
 
@@ -82,7 +84,8 @@ namespace RASS_System.Controllers
             {
                 return NotFound();
             }
-            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "Id", driverData.VehicleID);
+            ViewData["AccidentID"] = new SelectList(_context.accidentDatas, "Id", "ID", driverData.AccidentID);
+            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "MakeModel", driverData.VehicleID);
             return View(driverData);
         }
 
@@ -91,7 +94,7 @@ namespace RASS_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Gender,Age,Contact,LicenseNumber,MedicalInfo,AccidentID,VehicleID")] DriverData driverData)
+        public async Task<IActionResult> Edit(int id, DriverData driverData)
         {
             if (id != driverData.ID)
             {
@@ -118,7 +121,8 @@ namespace RASS_System.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "Id", driverData.VehicleID);
+            ViewData["AccidentID"] = new SelectList(_context.accidentDatas, "Id", "ID", driverData.AccidentID);
+            ViewData["VehicleID"] = new SelectList(_context.Vehicles, "Id", "MakeModel", driverData.VehicleID);
             return View(driverData);
         }
 
@@ -131,6 +135,7 @@ namespace RASS_System.Controllers
             }
 
             var driverData = await _context.Drivers
+                .Include(a => a.accidentData)
                 .Include(d => d.Vehicle)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (driverData == null)

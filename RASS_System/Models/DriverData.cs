@@ -18,9 +18,9 @@
 
         // FOREIGN KEY DEPLOYMENT
         public int AccidentID { get; set; }
-        public accidentData accidentData { get; set; }
+        public accidentData? accidentData { get; set; }
 
         public int VehicleID { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public Vehicle? Vehicle { get; set; }
     }
 }
