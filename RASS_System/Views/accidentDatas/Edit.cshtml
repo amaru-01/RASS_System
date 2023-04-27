@@ -55,12 +55,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="hospitalID" class="control-label"></label>
-                <input asp-for="hospitalID" class="form-control" />
+                <select asp-for="hospitalID" class="form-control" asp-items="ViewBag.hospitalID"></select>
                 <span asp-validation-for="hospitalID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="policeID" class="control-label"></label>
-                <input asp-for="policeID" class="form-control" />
+                <select asp-for="policeID" class="form-control" asp-items="ViewBag.policeID"></select>
                 <span asp-validation-for="policeID" class="text-danger"></span>
             </div>
             <div class="form-group">

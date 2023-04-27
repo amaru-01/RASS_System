@@ -22,9 +22,8 @@ namespace RASS_System.Controllers
         // GET: accidentDatas
         public async Task<IActionResult> Index()
         {
-            return _context.accidentDatas != null ?
-                        View(await _context.accidentDatas.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.accidentDatas'  is null.");
+            var applicationDbContext = _context.accidentDatas.Include(a => a.Hospital).Include(a => a.Police);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: accidentDatas/Details/5
@@ -36,6 +35,8 @@ namespace RASS_System.Controllers
             }
 
             var accidentData = await _context.accidentDatas
+                .Include(a => a.Hospital)
+                .Include(a => a.Police)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (accidentData == null)
             {
@@ -48,6 +49,8 @@ namespace RASS_System.Controllers
         // GET: accidentDatas/Create
         public IActionResult Create()
         {
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id");
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id");
             return View();
         }
 
@@ -64,6 +67,8 @@ namespace RASS_System.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
             return View(accidentData);
         }
 
@@ -80,6 +85,8 @@ namespace RASS_System.Controllers
             {
                 return NotFound();
             }
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
             return View(accidentData);
         }
 
@@ -115,6 +122,8 @@ namespace RASS_System.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["hospitalID"] = new SelectList(_context.Hospitals, "Id", "Id", accidentData.hospitalID);
+            ViewData["policeID"] = new SelectList(_context.Polices, "Id", "Id", accidentData.policeID);
             return View(accidentData);
         }
 
@@ -127,6 +136,8 @@ namespace RASS_System.Controllers
             }
 
             var accidentData = await _context.accidentDatas
+                .Include(a => a.Hospital)
+                .Include(a => a.Police)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (accidentData == null)
             {
@@ -150,14 +161,14 @@ namespace RASS_System.Controllers
             {
                 _context.accidentDatas.Remove(accidentData);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool accidentDataExists(int id)
         {
-            return (_context.accidentDatas?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.accidentDatas?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }
