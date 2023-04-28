@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\DriverDatas\**" />
+    <Content Remove="Views\DriverDatas\**" />
+    <EmbeddedResource Remove="Views\DriverDatas\**" />
+    <None Remove="Views\DriverDatas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
