@@ -16,6 +16,6 @@ namespace RASS_System.Context
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Police> Polices { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<DriverData> Drivers { get; set; }
+        
     }
 }

@@ -22,7 +22,7 @@ namespace RASS_System.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RASS_System.Models.DriverData", b =>
+            modelBuilder.Entity("RASS_System.Models.Driver", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -33,22 +33,25 @@ namespace RASS_System.Migrations
                     b.Property<int>("AccidentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<int>("Contact")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfBirthDateOnly")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LicenseNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MedicalInfo")
+                    b.Property<string>("LicenseNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MedicalInfo")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -57,16 +60,9 @@ namespace RASS_System.Migrations
                     b.Property<int>("VehicleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("accidentDataID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("VehicleID");
-
-                    b.HasIndex("accidentDataID");
-
-                    b.ToTable("Drivers");
+                    b.ToTable("Drivers", (string)null);
                 });
 
             modelBuilder.Entity("RASS_System.Models.Hospital", b =>
@@ -101,7 +97,7 @@ namespace RASS_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Hospitals");
+                    b.ToTable("Hospitals", (string)null);
                 });
 
             modelBuilder.Entity("RASS_System.Models.Police", b =>
@@ -128,7 +124,7 @@ namespace RASS_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Polices");
+                    b.ToTable("Polices", (string)null);
                 });
 
             modelBuilder.Entity("RASS_System.Models.Vehicle", b =>
@@ -164,7 +160,7 @@ namespace RASS_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 
             modelBuilder.Entity("RASS_System.Models.accidentData", b =>
@@ -218,26 +214,7 @@ namespace RASS_System.Migrations
 
                     b.HasIndex("policeID");
 
-                    b.ToTable("accidentDatas");
-                });
-
-            modelBuilder.Entity("RASS_System.Models.DriverData", b =>
-                {
-                    b.HasOne("RASS_System.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RASS_System.Models.accidentData", "accidentData")
-                        .WithMany()
-                        .HasForeignKey("accidentDataID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vehicle");
-
-                    b.Navigation("accidentData");
+                    b.ToTable("accidentDatas", (string)null);
                 });
 
             modelBuilder.Entity("RASS_System.Models.accidentData", b =>
