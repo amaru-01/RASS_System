@@ -21,6 +21,8 @@ namespace RASS_System.Models
         public string description { get; set; }
 
         public string weather { get; set; }
+        
+        public int 
 
 
         // FOREIGN KEY DEVELOPMENT

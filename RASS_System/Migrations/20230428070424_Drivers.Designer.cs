@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RASS_System.Context;
 
@@ -11,9 +12,11 @@ using RASS_System.Context;
 namespace RASS_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230428070424_Drivers")]
+    partial class Drivers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,14 +60,7 @@ namespace RASS_System.Migrations
                     b.Property<int>("VehicleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("accidentDataID")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("VehicleID");
-
-                    b.HasIndex("accidentDataID");
 
                     b.ToTable("Drivers");
                 });
@@ -219,25 +215,6 @@ namespace RASS_System.Migrations
                     b.HasIndex("policeID");
 
                     b.ToTable("accidentDatas");
-                });
-
-            modelBuilder.Entity("RASS_System.Models.Driver", b =>
-                {
-                    b.HasOne("RASS_System.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RASS_System.Models.accidentData", "accidentData")
-                        .WithMany()
-                        .HasForeignKey("accidentDataID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vehicle");
-
-                    b.Navigation("accidentData");
                 });
 
             modelBuilder.Entity("RASS_System.Models.accidentData", b =>

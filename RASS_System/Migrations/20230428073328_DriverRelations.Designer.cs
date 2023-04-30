@@ -12,8 +12,8 @@ using RASS_System.Context;
 namespace RASS_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230427073148_AccidentRelations")]
-    partial class AccidentRelations
+    [Migration("20230428073328_DriverRelations")]
+    partial class DriverRelations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,34 +27,31 @@ namespace RASS_System.Migrations
 
             modelBuilder.Entity("RASS_System.Models.Driver", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccidentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Contact")
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOfBirthDateOnly")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Conatct")
+                        .HasColumnType("int");
 
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LicenseNumber")
+                    b.Property<int>("LicenceNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MedicalInfo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MedicalInfo")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -63,7 +60,14 @@ namespace RASS_System.Migrations
                     b.Property<int>("VehicleID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<int>("accidentDataID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleID");
+
+                    b.HasIndex("accidentDataID");
 
                     b.ToTable("Drivers");
                 });
@@ -218,6 +222,25 @@ namespace RASS_System.Migrations
                     b.HasIndex("policeID");
 
                     b.ToTable("accidentDatas");
+                });
+
+            modelBuilder.Entity("RASS_System.Models.Driver", b =>
+                {
+                    b.HasOne("RASS_System.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RASS_System.Models.accidentData", "accidentData")
+                        .WithMany()
+                        .HasForeignKey("accidentDataID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
+
+                    b.Navigation("accidentData");
                 });
 
             modelBuilder.Entity("RASS_System.Models.accidentData", b =>
