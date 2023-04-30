@@ -16,9 +16,9 @@
 
         public string MedicalInfo { get; set; }
 
-        public int AccidentID { get; set; }        
+        public int AccidentID { get; set; }
 
         public int VehicleID { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public Vehicle? Vehicle { get; set; }
     }
 }
