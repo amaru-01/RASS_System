@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RASS_System.Context;
@@ -13,7 +9,7 @@ namespace RASS_System.Controllers
     public class accidentDatasController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        
         public accidentDatasController(ApplicationDbContext context)
         {
             _context = context;
@@ -44,7 +40,7 @@ namespace RASS_System.Controllers
             }
 
             return View(accidentData);
-        }
+        }        
 
         // GET: accidentDatas/Create
         public IActionResult Create()
