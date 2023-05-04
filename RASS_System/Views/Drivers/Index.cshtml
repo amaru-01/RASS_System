@@ -4,12 +4,15 @@
     ViewData["Title"] = "Drivers List";
 }
 
-<h1>Drivers List</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i>Add New Driver details</a>
-</p>
-<table class="table">
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Driver List</h3>
+    </div>
+    <div class="card-body">
+        <p>
+            <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i>Add New Accident details</a>
+        </p>
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
@@ -83,3 +86,5 @@
 }
     </tbody>
 </table>
+</div>
+</div>
