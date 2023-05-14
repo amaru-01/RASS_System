@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddRazorPages()
+    .AddRazorRuntimeCompilation();
 
 //Service for DB Connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
