@@ -22,6 +22,22 @@ namespace RASS_System.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        [HttpPost]
+        public List<object> GetAccidentData()
+        {
+            List<object> accidentData = new List<object>();
+
+            List<string> labels = _context.accidentDatas.Select(p => p.county).ToList();
+
+            accidentData.Add(labels);
+
+            List<int> TotalAccident = _context.accidentDatas.Select(p => p.ID).ToList();
+
+            accidentData.Add(TotalAccident);
+
+            return accidentData;
+        }
+
         // GET: accidentDatas/Details/5
         public async Task<IActionResult> Details(int? id)
         {

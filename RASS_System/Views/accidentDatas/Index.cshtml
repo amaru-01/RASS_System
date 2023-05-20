@@ -99,3 +99,37 @@
 </table>
 </div>
 </div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Accident Graph presentation</h3>
+    </div>
+    <canvas id="myChart" style="max-width:500px;max-height:500px;"></canvas>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<script type="text/javascript">
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Nairobi', 'Nakuru', 'Mombasa', 'Kiambu', 'Uasin Gishu', 'Kisumu', 'Kisii'],
+                datasets: [{
+                    label: 'No of accidnets in each county',
+                    data: [35, 20, 25, 7, 10, 4, 12],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+</script>
+</div>

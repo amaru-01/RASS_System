@@ -68,32 +68,8 @@
 <!-- Main row -->
 
 
-<canvas id="myChart" style="max-width:600px;max-height:600px;"></canvas>
-<div>
-    <canvas id="myChart"></canvas>
-</div>
 
-<script>
-    const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: 'No of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+
 
 
