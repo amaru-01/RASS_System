@@ -5,11 +5,14 @@ namespace RASS_System.Context
 {
     public class ApplicationDbContext : DbContext
     {
+        
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
             : base(contextOptions)
         {
 
         }
+       
 
         // Code first approach
         public DbSet<accidentData> accidentDatas { get; set; }

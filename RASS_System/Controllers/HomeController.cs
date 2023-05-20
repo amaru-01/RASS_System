@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RASS_System.Context;
 using RASS_System.Models;
 using System.Diagnostics;
 
@@ -15,9 +16,11 @@ namespace RASS_System.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
+      
         public IActionResult Privacy()
         {
             return View();

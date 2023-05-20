@@ -3,13 +3,15 @@
 
 }
 
+
+
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>150</h3>
+                <h3>100</h3>
                 <p>Total Accidents</p>
             </div>
             <div class="icon">
@@ -64,6 +66,34 @@
 </div>
 <!-- /.row -->
 <!-- Main row -->
-<div class="row">
-    
+
+
+<canvas id="myChart" style="max-width:600px;max-height:600px;"></canvas>
+<div>
+    <canvas id="myChart"></canvas>
 </div>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: 'No of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
